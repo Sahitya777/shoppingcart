@@ -140,7 +140,7 @@ const ProductSection = () => {
               {cartitems
                 .filter((cartItem) => cartItem.itemsIncart > 0)
                 .map((cartItem) => (
-                  <div className="flex w-full justify-between items-center bg-white py-2 px-4 rounded-md">
+                  <div className="flex w-full justify-between items-center bg-white py-3 px-4 rounded-md">
                     <div className="flex flex-col">
                       <div className="text-black">{cartItem.name}</div>
                       <div className="text-gray-500 text-sm">
