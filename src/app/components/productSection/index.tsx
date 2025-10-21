@@ -33,21 +33,21 @@ const ProductSection = () => {
   }, [cartitems]);
 
   return (
-    <div className="mt-4 px-48 w-full">
-      <div className="flex items-center w-full justify-center text-2xl text-black">
+    <div className="mt-0 px-10 w-full">
+      <div className="flex items-center w-full justify-center text-2xl text-[#4a5260] font-extrabold whitespace-nowrap">
         Shopping Cart App
       </div>
-      <div className="flex flex-col items-start w-full text-black mt-4">
+      <div className="flex flex-col items-start w-full text-black mt-8">
         <div className="text-gray-600 text-xl font-semibold">Products</div>
-        <div className="flex gap-4 mt-2">
+        <div className="flex gap-4 mt-2 flex-wrap">
           {PRODUCTS.map((product: any, index: number) => (
-            <div className="flex flex-col gap-2 bg-white p-2 rounded-md min-w-[200px]">
+            <div className="flex flex-col gap-3 bg-white p-2 rounded-md md:min-w-[200px] min-w-full">
               <div>{product.name}</div>
               <div>₹{product.price}</div>
               {cartitems.find((item) => item.id === product.id)?.itemsIncart ===
               0 ? (
                 <button
-                  className="w-full bg-blue-500 p-1 cursor-pointer rounded-md"
+                  className="w-full bg-[#2b7fff] p-1 cursor-pointer rounded-sm text-white text-sm"
                   onClick={() => {
                     setCartItems((prevItems) =>
                       prevItems.map((cartItem) =>
@@ -66,7 +66,7 @@ const ProductSection = () => {
               ) : (
                 <div className="flex gap-4 items-center">
                   <div
-                    className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-green-500 text-black"
+                    className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-[#08c953] text-black"
                     onClick={() => {
                       setCartItems((prevItems) =>
                         prevItems.map((item) =>
@@ -86,7 +86,7 @@ const ProductSection = () => {
                     }
                   </div>
                   <div
-                    className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-red-500 text-black"
+                    className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-[#fb2c37] text-black"
                     onClick={() => {
                       setCartItems((prevItems) =>
                         prevItems.map((item) =>
@@ -104,21 +104,21 @@ const ProductSection = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-2 text-gray-600 mt-4 font-semibold w-full">
+        <div className="flex flex-col gap-2 text-gray-600 mt-6 font-semibold w-full">
           <div className="text-xl">Cart Summary</div>
           <div className="flex flex-col bg-white p-2 rounded-md w-full text-black">
             <div className="w-full flex justify-between mt-2 border-b pb-2">
               <div>Subtotal:</div>
-              <div>₹{totalPrice}</div>
+              <div className="font-bold">₹{totalPrice}</div>
             </div>
             {totalPrice < THRESHOLD ? (
-              <div className="bg-blue-100 mt-2 rounded-md p-2 flex flex-col">
+              <div className="bg-[#eff6ff] mt-2 rounded-md p-2 flex flex-col">
                 <div>
                   Add ₹{remainingAmount} more to get a FREE Wireless Mouse!
                 </div>
-                <div className="bg-gray-300 rounded-full w-full">
+                <div className="bg-[#e6e7eb] rounded-full w-full">
                   <div
-                    className="w-full bg-blue-600 transition-all duration-500 rounded-full h-3"
+                    className="w-full bg-[#2b7fff] transition-all duration-500 rounded-full h-3"
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
@@ -135,12 +135,12 @@ const ProductSection = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-2 text-gray-600 mt-4 font-semibold w-full">
-            <div className="text-xl">Cart Items</div>
+            <div className="text-xl text-[#414c60]">Cart Items</div>
             <div className="flex flex-col gap-3">
               {cartitems
                 .filter((cartItem) => cartItem.itemsIncart > 0)
                 .map((cartItem) => (
-                  <div className="flex w-full justify-between items-center bg-white p-2 rounded-md">
+                  <div className="flex w-full justify-between items-center bg-white py-2 px-4 rounded-md">
                     <div className="flex flex-col">
                       <div className="text-black">{cartItem.name}</div>
                       <div className="text-gray-500 text-sm">
@@ -150,27 +150,7 @@ const ProductSection = () => {
                     </div>
                     <div className="flex gap-4 items-center">
                       <div
-                        className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-green-500 text-black"
-                        onClick={() => {
-                          setCartItems((prevItems) =>
-                            prevItems.map((item) =>
-                              item.id === cartItem.id
-                                ? { ...item, itemsIncart: item.itemsIncart + 1 }
-                                : item
-                            )
-                          );
-                        }}
-                      >
-                        +
-                      </div>
-                      <div>
-                        {
-                          cartitems.find((item) => item.id === cartItem.id)
-                            ?.itemsIncart
-                        }
-                      </div>
-                      <div
-                        className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-red-500 text-black"
+                        className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-[#fb2c37] text-white"
                         onClick={() => {
                           setCartItems((prevItems) =>
                             prevItems.map((item) =>
@@ -183,6 +163,26 @@ const ProductSection = () => {
                       >
                         -
                       </div>
+                      <div>
+                        {
+                          cartitems.find((item) => item.id === cartItem.id)
+                            ?.itemsIncart
+                        }
+                      </div>
+                      <div
+                        className="flex w-full justify-between cursor-pointer rounded-md px-4 py-1 bg-[#08c953] text-white"
+                        onClick={() => {
+                          setCartItems((prevItems) =>
+                            prevItems.map((item) =>
+                              item.id === cartItem.id
+                                ? { ...item, itemsIncart: item.itemsIncart + 1 }
+                                : item
+                            )
+                          );
+                        }}
+                      >
+                        +
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -192,8 +192,8 @@ const ProductSection = () => {
                     <div className="text-black">{FREE_GIFT.name}</div>
                     <div>₹{FREE_GIFT.price} x 1 = ₹0</div>
                   </div>
-                  <div className="px-2 h-6 bg-green-300 text-green-800 rounded-full flex items-center uppercase text-sm">
-                    Free Gift!
+                  <div className="px-2 h-6 bg-[#dcfce6] text-[#599d70] rounded-full flex items-center uppercase text-sm mr-4">
+                    Free Gift
                   </div>
                 </div>
               )}
